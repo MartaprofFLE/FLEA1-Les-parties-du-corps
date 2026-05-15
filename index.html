@@ -1,0 +1,1548 @@
+
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Les parties du corps — FLE A1 (PRO+ · Joc)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    :root{
+      --sage:#3d7a52; --sage-l:#e6f2eb; --sage-m:#a8cfb8; --sage-d:#1e4a2e;
+      --rose:#b85a6e; --rose-l:#fcedf1; --rose-m:#e8a8b8;
+      --gold:#c49a35; --gold-l:#fdf4e0; --gold-m:#e8ca85;
+      --sky:#3d6fa8; --sky-l:#e8f0fb; --sky-m:#a0c0e0;
+      --ink:#1a1d24; --muted:#6c6f7c;
+      --bg:#f8f6f1; --card:#fff; --border:#e4e0d6;
+      --shadow:0 8px 30px rgba(0,0,0,.08);
+      --r:18px; --r2:14px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+      background:
+        radial-gradient(ellipse 70% 50% at 12% 12%, #e6f2eb66 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 88% 88%, #fcedf166 0%, transparent 55%),
+        radial-gradient(ellipse 55% 45% at 75% 10%, #fdf4e055 0%, transparent 55%);
+    }
+    .wrap{max-width:960px;margin:0 auto;padding:16px 16px 48px;position:relative;z-index:1}
+
+    /* START SCREEN */
+    .startScreen{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,#e6f2eb,#fdf4e0);overflow:hidden}
+    .startScreen::before{content:'';position:absolute;inset:-60px;opacity:.6;filter:blur(1px);
+      background:
+        radial-gradient(circle at 18% 22%, #ffffffcc 0, transparent 52%),
+        radial-gradient(circle at 82% 30%, #ffffffaa 0, transparent 52%),
+        radial-gradient(circle at 55% 80%, #ffffffaa 0, transparent 52%);
+    }
+    .startCard{position:relative;z-index:1;background:#fff;border:1.5px solid var(--border);border-radius:22px;
+      box-shadow:0 18px 60px rgba(0,0,0,.12);padding:26px 22px;max-width:520px;width:calc(100% - 28px);
+      text-align:center}
+    .startBadge{display:inline-flex;gap:8px;align-items:center;background:var(--sage);color:#fff;padding:6px 14px;
+      border-radius:999px;font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    .startTitle{font-family:'Playfair Display',serif;font-size:2.1rem;margin:12px 0 6px}
+    .startTitle em{color:var(--sage);font-style:italic}
+    .startSub{color:var(--muted);line-height:1.5;margin:0 auto 16px;max-width:440px}
+    .startRow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+    .bigBtn{border:0;border-radius:14px;padding:12px 18px;font-weight:900;cursor:pointer}
+    .bigPrimary{background:var(--sage);color:#fff;box-shadow:0 12px 22px rgba(61,122,82,.22)}
+    .bigGhost{background:#fff;border:1.5px solid var(--border);color:var(--muted)}
+    .bigBtn:active{transform:scale(.98)}
+    .tog{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:14px;color:var(--muted);font-weight:800;font-size:.86rem}
+    .tog input{transform:scale(1.15)}
+
+    /* TOP HUD */
+    .hud{position:sticky;top:10px;z-index:50;display:flex;justify-content:center;margin:12px 0 10px}
+    .hudBox{display:flex;gap:10px;align-items:center;background:#fff;border:1.5px solid var(--border);
+      box-shadow:0 10px 24px rgba(0,0,0,.06);border-radius:999px;padding:8px 12px;flex-wrap:wrap}
+    .chip{display:inline-flex;gap:8px;align-items:center;border:1.5px solid var(--border);border-radius:999px;padding:6px 10px;
+      font-weight:900;font-size:.78rem;color:var(--muted)}
+    .chip b{color:var(--sage)}
+    .chipBtn{cursor:pointer;user-select:none}
+
+    /* HERO */
+    .hero{padding:18px 16px 14px;border-radius:18px;background:linear-gradient(135deg,#e6f2eb,#fdf4e0);
+      box-shadow:0 10px 30px rgba(0,0,0,.08);text-align:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:-60px;opacity:.55;filter:blur(1px);
+      background:
+        radial-gradient(circle at 20% 20%, #ffffffcc 0, transparent 55%),
+        radial-gradient(circle at 80% 30%, #ffffffaa 0, transparent 55%),
+        radial-gradient(circle at 60% 80%, #ffffffaa 0, transparent 55%);
+    }
+    .hero > *{position:relative;z-index:1}
+    .badge{display:inline-flex;gap:8px;align-items:center;background:var(--sage);color:#fff;padding:6px 14px;border-radius:999px;
+      font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    h1{font-family:'Playfair Display',serif;font-size:2.25rem;margin:10px 0 0}
+    h1 em{color:var(--sage);font-style:italic}
+
+    .xpWrap{margin-top:12px}
+    .xpBar{height:12px;background:#e4e0d6;border-radius:999px;overflow:hidden}
+    .xpFill{height:100%;width:0%;background:linear-gradient(90deg,var(--sage),var(--gold));transition:width .45s ease}
+    .xpText{margin-top:6px;font-weight:900;font-size:.82rem;color:var(--sage)}
+
+    /* NAV */
+    .nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0 18px}
+    .nav a{text-decoration:none;color:var(--muted);background:#fff;border:1.5px solid var(--border);padding:7px 12px;border-radius:999px;
+      font-weight:800;font-size:.78rem;position:relative;transition:all .18s}
+    .nav a.active,.nav a:hover{background:var(--sage);border-color:var(--sage);color:#fff}
+    .nav a.done::after{content:"✓";position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--gold);
+      color:#fff;display:flex;align-items:center;justify-content:center;font-size:.72rem;border:2px solid var(--bg)}
+
+    /* Cards */
+    .card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);
+      box-shadow:var(--shadow);padding:20px;margin:16px 0;transition:transform .18s, box-shadow .18s}
+    .card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.1)}
+    .sec-badge{font-size:.68rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-bottom:4px}
+    .sec-title{font-family:'Playfair Display',serif;font-size:1.45rem;margin-bottom:6px}
+    .sec-sub{color:var(--muted);font-size:.88rem;line-height:1.55}
+
+    /* Inputs */
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:end}
+    .field{flex:1;min-width:180px}
+    label{display:block;font-size:.7rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);margin-bottom:6px}
+    input,textarea,select{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:.95rem;outline:none;background:#fff}
+    input:focus,textarea:focus,select:focus{border-color:var(--sage)}
+
+    .progress{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .bar{flex:1;min-width:180px;height:10px;background:var(--border);border-radius:999px;overflow:hidden}
+    .fill{height:100%;width:0%;background:linear-gradient(90deg,var(--sage),var(--gold));transition:width .35s cubic-bezier(.22,1,.36,1)}
+    .pct{font-weight:900;color:var(--sage)}
+
+    /* Vocab */
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .fbtn{border:1.5px solid var(--border);background:#fff;border-radius:999px;padding:6px 12px;font-weight:800;font-size:.8rem;color:var(--muted);cursor:pointer}
+    .fbtn.active,.fbtn:hover{background:var(--sage);border-color:var(--sage);color:#fff}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+    .cardlet{border:1.5px solid var(--border);border-radius:12px;padding:12px 12px;cursor:pointer;min-height:118px;background:#fff;
+      transition:transform .15s, box-shadow .15s}
+    .cardlet:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.08)}
+    .cardletHead{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .tag{font-size:.7rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .emoji{font-size:1.85rem;line-height:1;margin-top:8px}
+    .ttsBtn{background:var(--sage-l);border:1.5px solid var(--sage-m);color:var(--sage);border-radius:10px;padding:4px 8px;font-weight:900;font-size:.82rem;cursor:pointer}
+    .ttsBtn:hover{background:var(--sage-m);color:#fff}
+    .fr{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-top:6px}
+    .ca{color:var(--muted);font-size:.85rem;margin-top:4px;display:none}
+    .ex{color:var(--sage-d);font-size:.78rem;margin-top:6px;font-style:italic;line-height:1.35;display:none}
+    .cardlet.flipped .ca,.cardlet.flipped .ex{display:block}
+
+    /* Video */
+    .videoWrap{border:1.5px solid var(--border);border-radius:12px;overflow:hidden;background:#111}
+    iframe{width:100%;height:360px;border:0;display:block}
+
+    /* Dictée */
+    .dicteeList{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .dicteeItem{display:flex;gap:10px;flex-wrap:wrap;align-items:center;border:1.5px solid var(--border);border-radius:12px;padding:10px 12px;background:#fff}
+    .n{width:30px;height:30px;border-radius:50%;background:var(--sky-l);color:var(--sky);display:flex;align-items:center;justify-content:center;font-weight:900}
+    .play{background:var(--sky);color:#fff;border:0;border-radius:10px;padding:9px 12px;font-weight:900;cursor:pointer}
+    .play:hover{filter:brightness(1.06)}
+    .small{font-size:.82rem;color:var(--muted)}
+    .ok{background:var(--sage-l)!important;border-color:var(--sage-m)!important}
+    .bad{background:var(--rose-l)!important;border-color:var(--rose-m)!important}
+
+    /* Quiz */
+    .qMeta{display:flex;justify-content:space-between;align-items:end;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .pillMeta{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;border:1.5px solid var(--border);
+      background:#fff;font-weight:900;font-size:.78rem;color:var(--muted)}
+    .qChoices{display:flex;flex-direction:column;gap:9px;margin-top:10px}
+    .qBtn{border:1.5px solid var(--border);border-radius:14px;background:#fff;padding:11px 12px;font-weight:800;cursor:pointer;text-align:left;transition:transform .08s}
+    .qBtn:hover{border-color:var(--sage)}
+    .qBtn:active{transform:scale(.985)}
+    .qBtn.correct{background:#d9f5e3;border-color:var(--sage)}
+    .qBtn.wrong{background:#fde3e6;border-color:var(--rose)}
+    .qBtn.disabled{cursor:default;opacity:.78}
+    .qBtn.elim{opacity:.25;text-decoration:line-through}
+
+    /* Corps */
+    .stage{display:grid;grid-template-columns:240px 1fr;gap:16px;align-items:center;border:1.5px solid var(--border);border-radius:14px;padding:14px;background:#fff;margin-top:12px}
+    @media(max-width:700px){.stage{grid-template-columns:1fr;justify-items:center}}
+    .labelBox{border:1.5px solid var(--sage-m);background:var(--sage-l);border-radius:12px;padding:14px;min-height:110px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+    .labelBox.empty{border-color:var(--gold-m);background:var(--gold-l);color:var(--muted)}
+    .pill{display:inline-flex;padding:4px 10px;border-radius:999px;background:var(--sage-l);border:1.5px solid var(--sage-m);font-weight:900;font-size:.78rem;color:var(--sage-d);margin:3px 6px 0 0;cursor:pointer}
+    .bp{fill:#f5ead6;stroke:#c9bfa8;stroke-width:1.5;cursor:pointer;transition:.12s}
+    .bp:hover{fill:var(--gold-l);stroke:var(--gold)}
+    .bp.discovered{fill:var(--sage-m);stroke:var(--sage);stroke-width:2}
+
+    /* Buttons and feedback */
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+    .btn{border:0;border-radius:11px;padding:10px 16px;font-weight:900;cursor:pointer;transition:transform .1s ease, box-shadow .1s ease}
+    .btn:active{transform:scale(.97)}
+    .primary{background:var(--sage);color:#fff}
+    .ghost{background:transparent;border:1.5px solid var(--border);color:var(--muted)}
+    .ghost:hover{border-color:var(--sage);color:var(--sage)}
+
+    .fb{display:none;margin-top:10px;border-radius:12px;padding:10px 12px;font-weight:900;font-size:.9rem}
+    .fb.show{display:block;animation:pop .22s ease}
+    .fb.ok{background:var(--sage-l);border:1.5px solid var(--sage-m);color:var(--sage-d)}
+    .fb.bad{background:var(--rose-l);border:1.5px solid var(--rose-m);color:#7a1c30}
+    @keyframes pop{0%{transform:scale(.92);opacity:0}100%{transform:scale(1);opacity:1}}
+
+    /* Modals */
+    .modalBack{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:9999}
+    .modal{background:#fff;border:1.5px solid var(--border);border-radius:18px;box-shadow:0 18px 60px rgba(0,0,0,.18);
+      width:min(720px, calc(100% - 24px));max-height:80vh;overflow:auto;padding:18px}
+    .modalHead{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .modalHead h3{font-family:'Playfair Display',serif;font-size:1.25rem}
+    .xBtn{border:1.5px solid var(--border);background:#fff;border-radius:10px;padding:6px 10px;font-weight:900;cursor:pointer}
+    .badgeGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:12px}
+    .bCard{border:1.5px solid var(--border);border-radius:14px;padding:12px;background:#fff}
+    .bCard .bName{font-weight:900;margin-top:4px}
+    .bCard .bSmall{color:var(--muted);font-size:.82rem;margin-top:3px;line-height:1.35}
+    .bCard.locked{opacity:.45}
+
+    /* Confetti + toast */
+    .confetti{position:fixed;inset:0;pointer-events:none;z-index:10000;overflow:hidden}
+    .confetti i{position:absolute;top:-12px;width:10px;height:16px;opacity:.9;transform:rotate(15deg);animation:fall 950ms linear forwards}
+    @keyframes fall{to{transform:translateY(110vh) rotate(240deg);opacity:0}}
+
+    #toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);
+      background:rgba(26,29,36,.92);color:#fff;padding:10px 14px;border-radius:999px;font-weight:900;font-size:.85rem;
+      z-index:10001;box-shadow:0 10px 24px rgba(0,0,0,.18);opacity:0;transition:opacity .2s ease, transform .2s ease}
+
+    .foot{color:var(--muted);text-align:center;font-size:.78rem;margin:18px 0 28px}
+  </style>
+</head>
+<body>
+
+  <!-- START SCREEN -->
+  <div class="startScreen" id="startScreen" aria-label="pantalla d'inici">
+    <div class="startCard">
+      <div class="startBadge">🇫🇷 A1 · FLE · PRO+</div>
+      <div class="startTitle">Les <em>parties du corps</em></div>
+      <div class="startSub">Un joc curt i interactiu per practicar vocabulari del cos en francès: vocabulari, dictée, quiz i redacció.</div>
+      <div class="startRow">
+        <button class="bigBtn bigPrimary" id="startBtn">Comença →</button>
+        <button class="bigBtn bigGhost" id="howBtn">Com funciona</button>
+      </div>
+      <div class="tog">
+        <label><input type="checkbox" id="soundToggle" checked> Sons</label>
+        <label><input type="checkbox" id="motionToggle" checked> Animacions</label>
+      </div>
+      <div class="small" style="margin-top:10px">El progrés es guarda automàticament en aquest dispositiu.</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <div class="hero">
+      <div class="badge">🇫🇷 A1 · FLE · PRO+</div>
+      <h1>Les <em>parties du corps</em></h1>
+      <div class="xpWrap">
+        <div class="xpBar"><div class="xpFill" id="xpFill"></div></div>
+        <div class="xpText" id="xpText">Nivell 1 · XP 0 · Progrés 0%</div>
+      </div>
+    </div>
+
+    <div class="hud">
+      <div class="hudBox">
+        <span class="chip">⭐ XP: <b id="hudXp">0</b></span>
+        <span class="chip">🧩 Nivell: <b id="hudLevel">1</b></span>
+        <span class="chip">🔥 Dies: <b id="hudStreak">0</b></span>
+        <span class="chip chipBtn" id="openBadges">🏆 Insígnies: <b id="hudBadges">0</b></span>
+        <span class="chip chipBtn" id="openSettings">⚙️ Opcions</span>
+      </div>
+    </div>
+
+    <nav class="nav" id="nav">
+      <a href="#sec-vocab" id="nav-vocab">1. Vocab</a>
+      <a href="#sec-video" id="nav-video">2. Vídeo</a>
+      <a href="#sec-corps" id="nav-corps">3. Cos</a>
+      <a href="#sec-dictee" id="nav-dictee">4. Dictée</a>
+      <a href="#sec-quiz" id="nav-quiz">5. Quiz</a>
+      <a href="#sec-redac" id="nav-redac">6. Redacció</a>
+      <a href="#sec-finish" id="nav-finish">7. Lliurar</a>
+    </nav>
+
+    <section class="card" id="sec-student">
+      <div class="sec-badge">Dades</div>
+      <div class="sec-title">Identificació</div>
+      <div class="sec-sub">Escriu el teu nom i grup. Es guardaran i apareixeran al PDF final.</div>
+      <div class="row" style="margin-top:12px">
+        <div class="field">
+          <label for="stuName">Nom i cognoms *</label>
+          <input id="stuName" autocomplete="name" placeholder="Escriu el teu nom complet"/>
+        </div>
+        <div class="field">
+          <label for="stuGroup">Grup / classe *</label>
+          <input id="stuGroup" placeholder="Ex: 1r ESO A"/>
+        </div>
+      </div>
+
+      <div class="progress" style="margin-top:14px">
+        <div class="small" style="font-weight:900">Progrés total</div>
+        <div class="bar"><div class="fill" id="gpFill"></div></div>
+        <div class="pct" id="gpPct">0%</div>
+      </div>
+      <div class="small" id="saveNote" style="margin-top:8px">Guardat automàticament en aquest dispositiu.</div>
+    </section>
+
+    <!-- 1. VOCAB -->
+    <section class="card" id="sec-vocab">
+      <div class="sec-badge">Secció 1</div>
+      <div class="sec-title">Vocabulari (imatge + àudio)</div>
+      <div class="sec-sub">Fes clic a una targeta per veure traducció i exemple. Prem 🔊 per escoltar. Completa la secció obrint-ne com a mínim 12.</div>
+      <div class="filters" id="vocabFilters">
+        <button class="fbtn active" data-group="all">Tots</button>
+        <button class="fbtn" data-group="visage">Cara</button>
+        <button class="fbtn" data-group="haut">Tronc i braços</button>
+        <button class="fbtn" data-group="mains">Mans</button>
+        <button class="fbtn" data-group="bas">Cames i peus</button>
+      </div>
+      <div class="grid" id="vocabGrid"></div>
+      <div class="fb" id="vocabFb"></div>
+    </section>
+
+    <!-- 2. VIDEO -->
+    <section class="card" id="sec-video">
+      <div class="sec-badge">Secció 2</div>
+      <div class="sec-title">Vídeo</div>
+      <div class="sec-sub">Mira el vídeo. Quan acabis, marca'l com a vist per completar la secció.</div>
+      <div class="videoWrap" style="margin-top:12px">
+        <iframe loading="lazy" allowfullscreen
+          src="https://www.youtube-nocookie.com/embed/bKjtZI-KKz4?list=RDbKjtZI-KKz4"></iframe>
+      </div>
+      <div class="btnRow">
+        <a class="btn ghost" target="_blank" rel="noopener"
+          href="https://www.youtube.com/watch?v=bKjtZI-KKz4&list=RDbKjtZI-KKz4&start_radio=1">Obrir a YouTube</a>
+        <button class="btn primary" id="videoDone">Marcar vídeo com vist</button>
+      </div>
+      <div class="fb" id="videoFb"></div>
+    </section>
+
+    <!-- 3. COS INTERACTIU -->
+    <section class="card" id="sec-corps">
+      <div class="sec-badge">Secció 3</div>
+      <div class="sec-title">Cos interactiu</div>
+      <div class="sec-sub">Fes clic sobre cada part del cos per descobrir el nom en francès. Completa la secció descobrint-les totes.</div>
+      <div class="stage">
+        <svg viewBox="0 0 200 400" width="240" height="420" xmlns="http://www.w3.org/2000/svg" id="corpsSvg" aria-label="cos interactiu">
+          <path d="M68,38 Q100,12 132,38 Q132,28 100,22 Q68,28 68,38 Z" class="bp" data-part="cheveux" fill="#8b6f47"/>
+          <circle cx="100" cy="55" r="32" class="bp" data-part="tête"/>
+          <circle cx="89" cy="52" r="3.5" class="bp" data-part="yeux" fill="#1a1d24"/>
+          <circle cx="111" cy="52" r="3.5" class="bp" data-part="yeux" fill="#1a1d24"/>
+          <ellipse cx="100" cy="62" rx="3" ry="6" class="bp" data-part="nez"/>
+          <path d="M88,75 Q100,82 112,75" class="bp" data-part="bouche" fill="none" stroke="#b85a6e" stroke-width="2.5"/>
+          <ellipse cx="65" cy="58" rx="5" ry="10" class="bp" data-part="oreilles"/>
+          <ellipse cx="135" cy="58" rx="5" ry="10" class="bp" data-part="oreilles"/>
+          <rect x="90" y="85" width="20" height="14" class="bp" data-part="cou"/>
+          <ellipse cx="58" cy="105" rx="14" ry="10" class="bp" data-part="épaules"/>
+          <ellipse cx="142" cy="105" rx="14" ry="10" class="bp" data-part="épaules"/>
+          <rect x="60" y="98" width="80" height="110" rx="22" class="bp" data-part="ventre"/>
+          <rect x="32" y="108" width="22" height="55" rx="11" class="bp" data-part="bras"/>
+          <rect x="146" y="108" width="22" height="55" rx="11" class="bp" data-part="bras"/>
+          <circle cx="43" cy="165" r="10" class="bp" data-part="coude"/>
+          <circle cx="157" cy="165" r="10" class="bp" data-part="coude"/>
+          <rect x="32" y="170" width="22" height="50" rx="11" class="bp" data-part="bras"/>
+          <rect x="146" y="170" width="22" height="50" rx="11" class="bp" data-part="bras"/>
+          <circle cx="43" cy="228" r="12" class="bp" data-part="mains"/>
+          <circle cx="157" cy="228" r="12" class="bp" data-part="mains"/>
+          <rect x="64" y="208" width="32" height="65" rx="15" class="bp" data-part="jambes"/>
+          <rect x="104" y="208" width="32" height="65" rx="15" class="bp" data-part="jambes"/>
+          <circle cx="80" cy="278" r="11" class="bp" data-part="genou"/>
+          <circle cx="120" cy="278" r="11" class="bp" data-part="genou"/>
+          <rect x="68" y="282" width="24" height="65" rx="11" class="bp" data-part="jambes"/>
+          <rect x="108" y="282" width="24" height="65" rx="11" class="bp" data-part="jambes"/>
+          <ellipse cx="80" cy="355" rx="16" ry="9" class="bp" data-part="pieds"/>
+          <ellipse cx="120" cy="355" rx="16" ry="9" class="bp" data-part="pieds"/>
+        </svg>
+
+        <div style="width:100%">
+          <div class="labelBox empty" id="corpsLabel">Fes clic a una part del cos per veure el nom en francès.</div>
+          <div class="small" style="margin-top:10px"><strong id="corpsCount">0</strong> / <strong id="corpsTotal">0</strong> descobertes</div>
+          <div style="margin-top:10px" id="corpsPills"></div>
+          <div class="btnRow">
+            <button class="btn ghost" id="corpsReset">Reiniciar</button>
+          </div>
+          <div class="fb" id="corpsFb"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. DICTEE -->
+    <section class="card" id="sec-dictee">
+      <div class="sec-badge">Secció 4</div>
+      <div class="sec-title">Dictée</div>
+      <div class="sec-sub">Escolta i escriu (amb article). Completa la secció amb un mínim del 70% correcte.</div>
+      <div class="dicteeList" id="dicteeArea"></div>
+      <div class="btnRow">
+        <button class="btn primary" id="dicteeCheck">Comprovar</button>
+        <button class="btn ghost" id="dicteeNew">Nova ronda</button>
+        <div class="small" id="dicteeScore">0 / 0</div>
+      </div>
+      <div class="fb" id="dicteeFb"></div>
+    </section>
+
+    <!-- 5. QUIZ -->
+    <section class="card" id="sec-quiz">
+      <div class="sec-badge">Secció 5</div>
+      <div class="sec-title">Quiz (A1 ampliat)</div>
+      <div class="sec-sub">8 preguntes. Base A1 + paraules extra segons progrés. Prioritza paraules que han sortit a la dictée.</div>
+
+      <div class="qMeta">
+        <div class="pillMeta" id="quizMeta">Pregunta 1/8</div>
+        <div style="min-width:220px">
+          <label for="quizMode" style="margin-bottom:6px">Mode</label>
+          <select id="quizMode">
+            <option value="strict">A1 estricte (nucli)</option>
+            <option value="extended" selected>A1 ampliat (nucli + extra)</option>
+          </select>
+        </div>
+        <button class="btn ghost" id="quizHint">Pista 50/50 (2)</button>
+      </div>
+
+      <div class="small" id="quizInfo" style="margin-top:10px"></div>
+      <div class="sec-title" style="font-size:1.2rem;margin-top:10px" id="quizQ"></div>
+      <div class="qChoices" id="quizChoices"></div>
+      <div class="btnRow">
+        <button class="btn primary" id="quizNext" style="display:none">Següent</button>
+        <button class="btn ghost" id="quizRebuild">Recrear quiz</button>
+      </div>
+      <div class="fb" id="quizFb"></div>
+    </section>
+
+    <!-- 6. REDAC -->
+    <section class="card" id="sec-redac">
+      <div class="sec-badge">Secció 6</div>
+      <div class="sec-title">Redacció</div>
+      <div class="sec-sub">Escriu una breu descripció en francès (mínim 12 paraules). Model: «J'ai …» · «Mes yeux sont …»</div>
+      <textarea id="redacText" rows="6" placeholder="Escriu aquí en francès…"></textarea>
+      <div class="small" style="margin-top:8px"><strong id="wc">0</strong> / 12 paraules</div>
+      <div class="fb" id="redacFb"></div>
+    </section>
+
+    <!-- 7. FINISH -->
+    <section class="card" id="sec-finish">
+      <div class="sec-badge">Secció 7</div>
+      <div class="sec-title">Lliurar</div>
+      <div class="sec-sub">Genera el PDF amb els teus resultats i la redacció. Després puja'l a Classroom.</div>
+      <div class="card" style="margin:12px 0;padding:14px">
+        <div class="small"><strong>Resum</strong></div>
+        <div class="small" id="summary"></div>
+      </div>
+      <div class="btnRow">
+        <button class="btn primary" id="makePdf">Descarregar el meu PDF</button>
+        <button class="btn ghost" id="resetAll">Reiniciar tot</button>
+      </div>
+      <div class="fb" id="finishFb"></div>
+    </section>
+
+    <div class="foot">Mode joc · Progrés guardat al navegador (localStorage). Mateix dispositiu + mateix navegador.</div>
+
+  </div>
+
+  <!-- MODALS -->
+  <div class="modalBack" id="badgesBack" role="dialog" aria-modal="true" aria-label="Insígnies">
+    <div class="modal">
+      <div class="modalHead">
+        <h3>🏆 Insígnies</h3>
+        <button class="xBtn" id="closeBadges">Tancar</button>
+      </div>
+      <div class="small" style="margin-top:6px">Completa seccions i fes ratxes per desbloquejar.</div>
+      <div class="badgeGrid" id="badgeGrid"></div>
+    </div>
+  </div>
+
+  <div class="modalBack" id="settingsBack" role="dialog" aria-modal="true" aria-label="Opcions">
+    <div class="modal">
+      <div class="modalHead">
+        <h3>⚙️ Opcions</h3>
+        <button class="xBtn" id="closeSettings">Tancar</button>
+      </div>
+      <div class="small" style="margin-top:8px">Ajusta sons i animacions.</div>
+      <div class="row" style="margin-top:12px">
+        <div class="field">
+          <label>Sons</label>
+          <select id="soundSelect">
+            <option value="on">Activats</option>
+            <option value="off">Desactivats</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Animacions</label>
+          <select id="motionSelect">
+            <option value="on">Activades</option>
+            <option value="off">Reduir</option>
+          </select>
+        </div>
+      </div>
+      <div class="btnRow">
+        <button class="btn ghost" id="wipeProgress">Esborrar progrés</button>
+      </div>
+      <div class="small" style="margin-top:8px">* Esborrar progrés elimina XP, ratxa, insígnies i respostes guardades.</div>
+    </div>
+  </div>
+
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+  <div id="toast" aria-live="polite"></div>
+
+<script>
+  /* ======== DADES ======== */
+  const VOCAB = [
+    {fr:"la tête", ca:"el cap", emoji:"🧠", group:"visage", ex:"J'ai une tête."},
+    {fr:"les cheveux", ca:"els cabells", emoji:"💇", group:"visage", ex:"J'ai les cheveux bruns."},
+    {fr:"les yeux", ca:"els ulls", emoji:"👀", group:"visage", ex:"J'ai deux yeux."},
+    {fr:"le nez", ca:"el nas", emoji:"👃", group:"visage", ex:"Le nez sent."},
+    {fr:"la bouche", ca:"la boca", emoji:"👄", group:"visage", ex:"La bouche parle."},
+    {fr:"les dents", ca:"les dents", emoji:"🦷", group:"visage", ex:"J'ai des dents."},
+    {fr:"la langue", ca:"la llengua", emoji:"👅", group:"visage", ex:"La langue goûte."},
+    {fr:"les oreilles", ca:"les orelles", emoji:"👂", group:"visage", ex:"J'ai deux oreilles."},
+
+    {fr:"le cou", ca:"el coll", emoji:"🧣", group:"haut", ex:"Le cou est ici."},
+    {fr:"les épaules", ca:"les espatlles", emoji:"🤷", group:"haut", ex:"J'ai deux épaules."},
+    {fr:"le bras", ca:"el braç", emoji:"💪", group:"haut", ex:"Je lève le bras."},
+    {fr:"le coude", ca:"el colze", emoji:"🦾", group:"haut", ex:"Le coude plie."},
+    {fr:"le dos", ca:"l'esquena", emoji:"🧍", group:"haut", ex:"Le dos est derrière."},
+    {fr:"le ventre", ca:"la panxa", emoji:"🍐", group:"haut", ex:"Le ventre bouge."},
+    {fr:"le cœur", ca:"el cor", emoji:"❤️", group:"haut", ex:"Le cœur bat."},
+
+    {fr:"la main", ca:"la mà", emoji:"✋", group:"mains", ex:"J'ai une main."},
+    {fr:"les mains", ca:"les mans", emoji:"🤲", group:"mains", ex:"J'ai deux mains."},
+    {fr:"les doigts", ca:"els dits", emoji:"🖐️", group:"mains", ex:"Cinq doigts."},
+    {fr:"l'ongle", ca:"l'ungla", emoji:"💅", group:"mains", ex:"L'ongle est petit."},
+
+    {fr:"la jambe", ca:"la cama", emoji:"🦵", group:"bas", ex:"J'ai une jambe."},
+    {fr:"les jambes", ca:"les cames", emoji:"🦵", group:"bas", ex:"J'ai deux jambes."},
+    {fr:"le genou", ca:"el genoll", emoji:"🦿", group:"bas", ex:"Le genou plie."},
+    {fr:"le pied", ca:"el peu", emoji:"🦶", group:"bas", ex:"J'ai un pied."},
+    {fr:"les pieds", ca:"els peus", emoji:"🦶", group:"bas", ex:"J'ai deux pieds."}
+  ];
+
+  const CORPS_PARTS = {
+    "tête":{fr:"la tête",ca:"el cap"},
+    "cheveux":{fr:"les cheveux",ca:"els cabells"},
+    "yeux":{fr:"les yeux",ca:"els ulls"},
+    "nez":{fr:"le nez",ca:"el nas"},
+    "bouche":{fr:"la bouche",ca:"la boca"},
+    "oreilles":{fr:"les oreilles",ca:"les orelles"},
+    "cou":{fr:"le cou",ca:"el coll"},
+    "épaules":{fr:"les épaules",ca:"les espatlles"},
+    "bras":{fr:"le bras",ca:"el braç"},
+    "coude":{fr:"le coude",ca:"el colze"},
+    "mains":{fr:"les mains",ca:"les mans"},
+    "ventre":{fr:"le ventre",ca:"la panxa"},
+    "jambes":{fr:"les jambes",ca:"les cames"},
+    "genou":{fr:"le genou",ca:"el genoll"},
+    "pieds":{fr:"les pieds",ca:"els peus"}
+  };
+
+  const DICTEE_BANK = [
+    "la tête","le nez","les yeux","la bouche","les oreilles","les dents","les cheveux",
+    "la main","les mains","le pied","les pieds","la jambe","les jambes","le bras","le cou","le ventre","le genou","le coude"
+  ];
+
+  const A1_CORE = [
+    "la tête","les yeux","le nez","la bouche","les oreilles","les dents",
+    "le bras","la main","la jambe","le pied"
+  ];
+
+  const EXTRA_POOL = VOCAB.map(v=>v.fr).filter(fr=>!A1_CORE.includes(fr));
+  const FR_TO_CA = Object.fromEntries(VOCAB.map(v=>[v.fr, v.ca]));
+
+  /* ======== ESTAT + PERSISTÈNCIA ======== */
+  const STORAGE_KEY = "fle_corps_pro_plus_v7_rebuild";
+  const state = {
+    student:{name:"", group:""},
+    done:{vocab:false, video:false, corps:false, dictee:false, quiz:false, redac:false},
+    vocab:{flipped:[]},
+    corps:{discovered:[]},
+    dictee:{items:[], answers:{}, ok:0, total:0, pct:0},
+    quiz:{mode:"extended", idx:0, correct:0, hintsLeft:2, completed:false, usedHints:0, questions:[], extraWords:[]},
+    redac:{text:"", wc:0},
+    game:{xp:0, badges:[], streakDays:0, lastActiveDate:"", level:1, sound:true, motion:true}
+  };
+
+  function save(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e){}
+    updateSummary();
+    updateGlobal();
+    updateHUD();
+  }
+
+  function load(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return;
+      const s = JSON.parse(raw);
+      Object.assign(state.student, s.student||{});
+      Object.assign(state.done, s.done||{});
+      state.vocab.flipped = (s.vocab && s.vocab.flipped) ? s.vocab.flipped : [];
+      state.corps.discovered = (s.corps && s.corps.discovered) ? s.corps.discovered : [];
+      state.dictee = Object.assign(state.dictee, s.dictee||{});
+      state.quiz = Object.assign(state.quiz, s.quiz||{});
+      state.redac = Object.assign(state.redac, s.redac||{});
+      state.game = Object.assign(state.game, s.game||{});
+      if(!Array.isArray(state.game.badges)) state.game.badges=[];
+      if(typeof state.game.sound !== 'boolean') state.game.sound = true;
+      if(typeof state.game.motion !== 'boolean') state.game.motion = true;
+      if(!state.game.level) state.game.level = 1;
+    }catch(e){}
+  }
+
+  function resetAll(){
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+
+  /* ======== START SCREEN ======== */
+  function hideStart(){
+    const el = document.getElementById('startScreen');
+    if(!el) return;
+    el.style.transition = 'opacity .35s ease';
+    el.style.opacity = '0';
+    setTimeout(()=>{ el.style.display='none'; }, 360);
+  }
+
+  function showHow(){
+    toast('Fes les 6 seccions. Guanya XP i desbloqueja insígnies!');
+  }
+
+  /* ======== GAMIFICACIÓ ======== */
+  const BADGES = [
+    {key:'vocab',  emoji:'🧠', name:'Vocab Master',  desc:'Obre 12 targetes de vocabulari.'},
+    {key:'video',  emoji:'🎬', name:'Vídeo fet',     desc:"Marca el vídeo com a vist."},
+    {key:'corps',  emoji:'🧩', name:'Explorador',    desc:'Descobreix totes les parts del cos interactiu.'},
+    {key:'dictee', emoji:'🎧', name:'Oïda fina',     desc:'Aconsegueix ≥70% a la dictée.'},
+    {key:'quiz',   emoji:'🏆', name:'Quiz Hero',     desc:'Aconsegueix ≥5/8 al quiz.'},
+    {key:'redac',  emoji:'✍️', name:'Escriptor/a',   desc:'Escriu 12 paraules o més a la redacció.'},
+    {key:'streak3',emoji:'🔥', name:'Ratxa 3',       desc:'Juga 3 dies seguits.'},
+    {key:'streak7',emoji:'🔥', name:'Ratxa 7',       desc:'Juga 7 dies seguits.'},
+    {key:'xp100',  emoji:'⭐', name:'100 XP',        desc:'Arriba a 100 XP.'},
+    {key:'xp250',  emoji:'⭐', name:'250 XP',        desc:'Arriba a 250 XP.'}
+  ];
+
+  function dateKey(d=new Date()){
+    const y=d.getFullYear();
+    const m=String(d.getMonth()+1).padStart(2,'0');
+    const da=String(d.getDate()).padStart(2,'0');
+    return `${y}-${m}-${da}`;
+  }
+
+  function daysBetween(a,b){
+    const A = new Date(a+'T00:00:00');
+    const B = new Date(b+'T00:00:00');
+    return Math.round((B-A)/(1000*60*60*24));
+  }
+
+  function applyStreak(){
+    const today = dateKey();
+    const last = state.game.lastActiveDate || '';
+    if(!last){
+      state.game.streakDays = 1;
+    }else{
+      const diff = daysBetween(last, today);
+      if(diff===0){
+        // same day, keep
+      }else if(diff===1){
+        state.game.streakDays = (state.game.streakDays||0) + 1;
+      }else{
+        state.game.streakDays = 1;
+      }
+    }
+    state.game.lastActiveDate = today;
+    if(state.game.streakDays===3) awardBadge('streak3');
+    if(state.game.streakDays===7) awardBadge('streak7');
+  }
+
+  function levelFromXP(xp){
+    return Math.max(1, Math.floor(xp/100)+1);
+  }
+
+  function addXP(n){
+    const before = state.game.xp||0;
+    const after = Math.max(0, before + n);
+    state.game.xp = after;
+    const newLvl = levelFromXP(after);
+    if(newLvl > (state.game.level||1)){
+      state.game.level = newLvl;
+      toast(`⬆️ Nivell ${newLvl}!`);
+      confetti();
+      sfx('win');
+    }
+    if(after>=100) awardBadge('xp100');
+    if(after>=250) awardBadge('xp250');
+    applyStreak();
+    updateHUD();
+    save();
+  }
+
+  function awardBadge(key){
+    if(state.game.badges.includes(key)) return;
+    state.game.badges.push(key);
+    renderBadges();
+    toast(`🏆 Insígnia: ${key}`);
+    if(state.game.motion) confetti();
+    sfx('win');
+  }
+
+  function completeSection(key){
+    if(state.done[key]) return;
+    state.done[key]=true;
+    addXP(25);
+    awardBadge(key);
+  }
+
+  /* Confetti */
+  function confetti(){
+    const root = document.getElementById('confetti');
+    if(!root) return;
+    root.innerHTML='';
+    const colors = ['#3d7a52','#c49a35','#b85a6e','#3d6fa8','#ffffff'];
+    const n = 44;
+    for(let i=0;i<n;i++){
+      const p = document.createElement('i');
+      p.style.left = (Math.random()*100)+'vw';
+      p.style.background = colors[Math.floor(Math.random()*colors.length)];
+      p.style.animationDuration = (650 + Math.random()*700)+'ms';
+      p.style.width = (6 + Math.random()*8)+'px';
+      p.style.height = (10 + Math.random()*16)+'px';
+      root.appendChild(p);
+    }
+    setTimeout(()=>{root.innerHTML='';}, 1200);
+  }
+
+  /* Toast */
+  let toastTimer;
+  function toast(text){
+    const el=document.getElementById('toast');
+    if(!el) return;
+    el.textContent = text;
+    el.style.opacity='1';
+    el.style.transform='translateX(-50%) translateY(-2px)';
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(()=>{el.style.opacity='0';el.style.transform='translateX(-50%) translateY(6px)';}, 1200);
+  }
+
+  /* SFX */
+  let audioCtx;
+  function sfx(type){
+    if(!state.game.sound) return;
+    try{
+      if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+      const t0 = audioCtx.currentTime;
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.connect(g); g.connect(audioCtx.destination);
+      g.gain.value = 0.0001;
+      const env = (peak, dur)=>{
+        g.gain.setValueAtTime(0.0001, t0);
+        g.gain.exponentialRampToValueAtTime(peak, t0+0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0+dur);
+      };
+      if(type==='good'){
+        o.type='triangle'; o.frequency.setValueAtTime(740, t0);
+        env(0.05, 0.18);
+      }else if(type==='bad'){
+        o.type='sawtooth'; o.frequency.setValueAtTime(180, t0);
+        env(0.04, 0.22);
+      }else if(type==='win'){
+        o.type='sine';
+        o.frequency.setValueAtTime(660, t0);
+        o.frequency.exponentialRampToValueAtTime(990, t0+0.14);
+        env(0.05, 0.28);
+      }
+      o.start();
+      o.stop(t0+0.3);
+    }catch(e){}
+  }
+
+  function updateHUD(){
+    const xp = state.game.xp||0;
+    const lvl = state.game.level||1;
+    const streak = state.game.streakDays||0;
+    const bcount = (state.game.badges||[]).length;
+
+    const pct = globalPct();
+
+    const hudXp = document.getElementById('hudXp');
+    const hudLevel = document.getElementById('hudLevel');
+    const hudSt = document.getElementById('hudStreak');
+    const hudBd = document.getElementById('hudBadges');
+
+    if(hudXp) hudXp.textContent = xp;
+    if(hudLevel) hudLevel.textContent = lvl;
+    if(hudSt) hudSt.textContent = streak;
+    if(hudBd) hudBd.textContent = bcount;
+
+    const xpFill = document.getElementById('xpFill');
+    const xpText = document.getElementById('xpText');
+    if(xpFill) xpFill.style.width = pct + '%';
+    if(xpText) xpText.textContent = `Nivell ${lvl} · XP ${xp} · Progrés ${pct}%`;
+
+    // reduir animacions
+    document.documentElement.style.scrollBehavior = state.game.motion ? 'smooth' : 'auto';
+  }
+
+  function renderBadges(){
+    const grid = document.getElementById('badgeGrid');
+    if(!grid) return;
+    grid.innerHTML='';
+    for(const b of BADGES){
+      const owned = state.game.badges.includes(b.key);
+      const c = document.createElement('div');
+      c.className = 'bCard' + (owned?'':' locked');
+      c.innerHTML = `<div style="font-size:1.6rem">${b.emoji}</div>
+                     <div class="bName">${b.name}</div>
+                     <div class="bSmall">${b.desc}</div>
+                     <div class="bSmall" style="margin-top:6px;font-weight:900;color:${owned?'var(--sage)':'var(--muted)'}">${owned?'Desbloquejada':'Bloquejada'}</div>`;
+      grid.appendChild(c);
+    }
+  }
+
+  /* ======== UTIL GENERAL ======== */
+  function normFR(s){
+    return String(s||"").toLowerCase().trim()
+      .replace(/[èéê]/g,'e').replace(/[àâ]/g,'a')
+      .replace(/[ùûü]/g,'u').replace(/[îï]/g,'i')
+      .replace(/[ôö]/g,'o').replace(/œ/g,'oe')
+      .replace(/ç/g,'c')
+      .replace(/'/g,' ').replace(/\s+/g,' ').trim();
+  }
+
+  function speakFR(text){
+    if(!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'fr-FR';
+    u.rate = 0.9;
+    window.speechSynthesis.speak(u);
+  }
+
+  function setFb(id, ok, msg){
+    const el=document.getElementById(id);
+    el.className = 'fb show ' + (ok ? 'ok' : 'bad');
+    el.textContent = msg;
+  }
+
+  function shuffle(a){
+    const arr=[...a];
+    for(let i=arr.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+    return arr;
+  }
+
+  function unique(arr){
+    const out=[]; const seen=new Set();
+    for(const x of arr){ if(!seen.has(x)){seen.add(x); out.push(x);} }
+    return out;
+  }
+
+  function pick(pool, n){
+    return shuffle(pool).slice(0, Math.max(0, Math.min(n, pool.length)));
+  }
+
+  /* ======== PROGRÉS GLOBAL ======== */
+  const SECTIONS = ['vocab','video','corps','dictee','quiz','redac'];
+  function globalPct(){
+    const doneCount = SECTIONS.filter(k=>state.done[k]).length;
+    return Math.round(doneCount/SECTIONS.length*100);
+  }
+
+  function updateGlobal(){
+    const pct = globalPct();
+    document.getElementById('gpFill').style.width = pct+'%';
+    document.getElementById('gpPct').textContent = pct+'%';
+
+    SECTIONS.forEach(k=>{
+      const a=document.getElementById('nav-'+k);
+      if(!a) return;
+      a.classList.toggle('done', !!state.done[k]);
+    });
+    updateHUD();
+  }
+
+  /* ======== NAV HIGHLIGHT ======== */
+  const NAV_IDS=['vocab','video','corps','dictee','quiz','redac','finish'];
+  const SEC_IDS=['sec-vocab','sec-video','sec-corps','sec-dictee','sec-quiz','sec-redac','sec-finish'];
+  window.addEventListener('scroll', ()=>{
+    let cur=0;
+    SEC_IDS.forEach((id,i)=>{
+      const el=document.getElementById(id);
+      if(el && window.scrollY >= el.offsetTop-140) cur=i;
+    });
+    NAV_IDS.forEach((id,i)=>{
+      const a=document.getElementById('nav-'+id);
+      if(a) a.classList.toggle('active', i===cur);
+    });
+  }, {passive:true});
+
+  /* ======== 1. VOCAB ======== */
+  const GLBL={visage:'Cara',haut:'Tronc i braços',mains:'Mans',bas:'Cames i peus'};
+  function buildVocab(){
+    const grid=document.getElementById('vocabGrid');
+    const filters=document.getElementById('vocabFilters');
+
+    function render(group){
+      grid.innerHTML='';
+      const items = VOCAB.filter(v=>group==='all' || v.group===group);
+      items.forEach(v=>{
+        const c=document.createElement('div');
+        c.className='cardlet';
+        const key=v.fr;
+        if(state.vocab.flipped.includes(key)) c.classList.add('flipped');
+
+        c.innerHTML = `
+          <div class="cardletHead">
+            <div class="tag">${GLBL[v.group]}</div>
+            <button class="ttsBtn" type="button" title="Escoltar">🔊</button>
+          </div>
+          <div class="emoji" aria-hidden="true">${v.emoji||''}</div>
+          <div class="fr">${v.fr}</div>
+          <div class="ca">${v.ca}</div>
+          <div class="ex">${v.ex}</div>
+        `;
+
+        c.querySelector('.ttsBtn')?.addEventListener('click', (e)=>{e.stopPropagation(); speakFR(v.fr);});
+
+        c.addEventListener('click', ()=>{
+          const was=c.classList.contains('flipped');
+          c.classList.toggle('flipped');
+          if(!was){
+            if(!state.vocab.flipped.includes(key)) state.vocab.flipped.push(key);
+            speakFR(v.fr);
+            addXP(2);
+            checkVocabDone();
+            save();
+          }
+        });
+
+        grid.appendChild(c);
+      });
+    }
+
+    filters.querySelectorAll('.fbtn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        filters.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        render(btn.dataset.group);
+      });
+    });
+
+    render('all');
+    checkVocabDone(false);
+  }
+
+  function checkVocabDone(showFb=true){
+    if(state.vocab.flipped.length >= Math.min(12, VOCAB.length)){
+      if(!state.done.vocab){
+        if(showFb) setFb('vocabFb', true, 'Secció 1 completada.');
+        completeSection('vocab');
+      }
+    }
+  }
+
+  /* ======== 2. VIDEO ======== */
+  function buildVideo(){
+    document.getElementById('videoDone').addEventListener('click', ()=>{
+      if(!state.done.video){
+        setFb('videoFb', true, 'Secció 2 completada.');
+        addXP(10);
+        completeSection('video');
+      }
+    });
+  }
+
+  /* ======== 3. CORPS ======== */
+  function buildCorps(){
+    const total = Object.keys(CORPS_PARTS).length;
+    document.getElementById('corpsTotal').textContent = total;
+
+    const svg=document.getElementById('corpsSvg');
+    const label=document.getElementById('corpsLabel');
+    const pills=document.getElementById('corpsPills');
+    const countEl=document.getElementById('corpsCount');
+
+    function renderPills(){
+      pills.innerHTML='';
+      state.corps.discovered.forEach(k=>{
+        const p=document.createElement('span');
+        p.className='pill';
+        p.textContent=CORPS_PARTS[k].fr;
+        p.onclick=()=>showLabel(k);
+        pills.appendChild(p);
+      });
+    }
+
+    function showLabel(key){
+      const pt=CORPS_PARTS[key];
+      label.className='labelBox';
+      label.innerHTML = `<div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--sage-d)">${pt.fr}</div>
+                         <div class="small">${pt.ca}</div>
+                         <div class="btnRow" style="margin-top:10px">
+                           <button class="btn ghost" id="say">Escoltar</button>
+                         </div>`;
+      label.querySelector('#say').onclick=()=>speakFR(pt.fr);
+      speakFR(pt.fr);
+    }
+
+    function discover(key){
+      if(!CORPS_PARTS[key]) return;
+      svg.querySelectorAll(`.bp[data-part="${key}"]`).forEach(el=>el.classList.add('discovered'));
+      if(!state.corps.discovered.includes(key)){
+        state.corps.discovered.push(key);
+        addXP(3);
+      }
+      countEl.textContent = state.corps.discovered.length;
+      renderPills();
+      showLabel(key);
+      if(state.corps.discovered.length === total && !state.done.corps){
+        setFb('corpsFb', true, 'Secció 3 completada.');
+        completeSection('corps');
+      }
+      save();
+    }
+
+    svg.querySelectorAll('.bp').forEach(el=>{
+      el.addEventListener('click', ()=> discover(el.dataset.part));
+    });
+
+    // restore
+    svg.querySelectorAll('.bp').forEach(el=>{
+      if(state.corps.discovered.includes(el.dataset.part)) el.classList.add('discovered');
+    });
+    countEl.textContent = state.corps.discovered.length;
+    renderPills();
+
+    document.getElementById('corpsReset').addEventListener('click', ()=>{
+      state.corps.discovered=[];
+      state.done.corps=false;
+      label.className='labelBox empty';
+      label.textContent='Fes clic a una part del cos per veure el nom en francès.';
+      svg.querySelectorAll('.bp').forEach(el=>el.classList.remove('discovered'));
+      countEl.textContent='0';
+      pills.innerHTML='';
+      document.getElementById('corpsFb').className='fb';
+      save();
+    });
+  }
+
+  /* ======== 4. DICTEE ======== */
+  function buildDictee(newRound=false){
+    if(newRound || !state.dictee.items || state.dictee.items.length===0){
+      const items=shuffle(DICTEE_BANK).slice(0,8);
+      state.dictee.items = items;
+      state.dictee.answers = {};
+      state.dictee.ok=0; state.dictee.total=items.length; state.dictee.pct=0;
+      state.done.dictee=false;
+      document.getElementById('dicteeFb').className='fb';
+      rebuildQuizFromDictee(true);
+    }
+
+    const area=document.getElementById('dicteeArea');
+    area.innerHTML='';
+    state.dictee.items.forEach((word,i)=>{
+      const row=document.createElement('div');
+      row.className='dicteeItem';
+      row.dataset.ans = word;
+      row.innerHTML = `
+        <div class="n">${i+1}</div>
+        <button class="play" type="button">Escoltar</button>
+        <input class="dicteeIn" placeholder="Escriu (amb article)…" value="${(state.dictee.answers[i]||'').replace(/"/g,'&quot;')}" />
+        <div class="small" style="margin-left:auto" id="dres${i}"></div>
+      `;
+      row.querySelector('.play').addEventListener('click', ()=>{ speakFR(word); sfx('good'); });
+      row.querySelector('.dicteeIn').addEventListener('input', (e)=>{ state.dictee.answers[i]=e.target.value; save(); });
+      area.appendChild(row);
+    });
+
+    document.getElementById('dicteeScore').textContent = `${state.dictee.ok||0} / ${state.dictee.total||state.dictee.items.length}`;
+    save();
+  }
+
+  function checkDictee(){
+    const rows=[...document.querySelectorAll('#dicteeArea .dicteeItem')];
+    let ok=0;
+    rows.forEach((row,i)=>{
+      const ans=row.dataset.ans;
+      const inp=row.querySelector('.dicteeIn');
+      const good = normFR(inp.value) === normFR(ans);
+      row.classList.remove('ok','bad');
+      if(good){ ok++; row.classList.add('ok'); row.querySelector('#dres'+i).textContent = '✓'; }
+      else{ row.classList.add('bad'); row.querySelector('#dres'+i).textContent = '→ '+ans; }
+    });
+    state.dictee.ok=ok; state.dictee.total=rows.length; state.dictee.pct = Math.round(ok/rows.length*100);
+    document.getElementById('dicteeScore').textContent = `${ok} / ${rows.length}`;
+
+    if(ok/rows.length >= 0.7){
+      setFb('dicteeFb', true, `Secció 4 completada (${state.dictee.pct}%).`);
+      addXP(15);
+      completeSection('dictee');
+      sfx('win');
+    }else{
+      setFb('dicteeFb', false, `Cal mínim 70%. Ara: ${state.dictee.pct}%.`);
+      sfx('bad');
+    }
+    save();
+  }
+
+  /* ======== 5. QUIZ (A1 ampliat + dictée) ======== */
+  function articleOf(fr){
+    const s=fr.trim().toLowerCase();
+    if(s.startsWith("l'")) return "l'";
+    if(s.startsWith('les ')) return 'les';
+    if(s.startsWith('la ')) return 'la';
+    if(s.startsWith('le ')) return 'le';
+    return '';
+  }
+  function nounOf(fr){
+    const s=fr.trim();
+    if(s.startsWith("l'")) return s.slice(2);
+    const parts=s.split(' ');
+    return parts.slice(1).join(' ');
+  }
+
+  function computeExtraCount(){
+    const pct = globalPct();
+    if(pct < 34) return 5;
+    if(pct < 50) return 6;
+    if(pct < 67) return 7;
+    return 8;
+  }
+
+  function buildCandidatePool(){
+    const mode = state.quiz.mode || 'extended';
+    if(mode==='strict'){
+      state.quiz.extraWords = [];
+      return [...A1_CORE];
+    }
+    const n = computeExtraCount();
+    if(!state.quiz.extraWords || state.quiz.extraWords.length===0){
+      state.quiz.extraWords = pick(EXTRA_POOL, n);
+    }else{
+      const want = n;
+      if(state.quiz.extraWords.length < want){
+        const missing = want - state.quiz.extraWords.length;
+        const rest = EXTRA_POOL.filter(x=>!state.quiz.extraWords.includes(x));
+        state.quiz.extraWords = [...state.quiz.extraWords, ...pick(rest, missing)];
+      }
+    }
+    return unique([...A1_CORE, ...state.quiz.extraWords]);
+  }
+
+  function pickDistractors(pool, correct, n){
+    const list = pool.filter(x=>x!==correct);
+    return pick(list, n);
+  }
+
+  function makeQuizQuestions(words, pool){
+    const chosen = shuffle(unique(words)).slice(0,8);
+    const articleWords = new Set(pick(chosen, Math.min(2, chosen.length)));
+
+    const qs=[];
+    for(const fr of chosen){
+      const ca = FR_TO_CA[fr] || '...';
+      if(articleWords.has(fr)){
+        const art = articleOf(fr);
+        const noun = nounOf(fr);
+        let opts = unique([art,'le','la','les',"l'"]).filter(Boolean);
+        opts = shuffle(opts).slice(0,4);
+        if(!opts.includes(art)) opts[opts.length-1]=art;
+        qs.push({kind:'article', q:`Quin article té «${noun}»?`, ch:shuffle(opts), a:art, fr});
+      }else{
+        const distractors = pickDistractors(pool, fr, 3);
+        const ch = shuffle([fr, ...distractors]);
+        qs.push({kind:'traduccio', q:`Com es diu «${ca}» en francès?`, ch, a:fr, fr});
+      }
+    }
+    return qs;
+  }
+
+  function rebuildQuizFromDictee(force=false){
+    const pool = buildCandidatePool();
+    const dicteeWords = (state.dictee.items||[]).filter(w=>pool.includes(w));
+    let base = unique([...dicteeWords, ...pool]).slice(0,8);
+
+    state.quiz.questions = makeQuizQuestions(base, pool);
+    state.quiz.idx = 0;
+    state.quiz.correct = 0;
+    state.quiz.hintsLeft = 2;
+    state.quiz.usedHints = 0;
+    state.quiz.completed = false;
+    state.done.quiz = false;
+
+    document.getElementById('quizFb').className='fb';
+    document.getElementById('quizNext').style.display='none';
+
+    renderQuizQ();
+    updateQuizInfo();
+    save();
+  }
+
+  function updateQuizInfo(){
+    const mode = state.quiz.mode || 'extended';
+    const pool = buildCandidatePool();
+    const extras = (mode==='strict') ? 0 : (state.quiz.extraWords||[]).length;
+    const pct = globalPct();
+    const fromDictee = (state.dictee.items||[]).filter(w=>pool.includes(w)).length;
+    document.getElementById('quizInfo').innerHTML = `
+      <div class="small">Mode: <strong>${mode==='strict'?'A1 estricte':'A1 ampliat'}</strong> · Progrés: <strong>${pct}%</strong> · Extra: <strong>${extras}</strong> · Dictée al pool: <strong>${fromDictee}</strong></div>
+    `;
+  }
+
+  function renderQuizQ(){
+    const idx=state.quiz.idx;
+    const total=state.quiz.questions.length || 8;
+    const q=state.quiz.questions[idx];
+    if(!q){ rebuildQuizFromDictee(true); return; }
+
+    document.getElementById('quizMeta').textContent = `Pregunta ${idx+1}/${total} · Correctes: ${state.quiz.correct}`;
+    const hintBtn=document.getElementById('quizHint');
+    hintBtn.textContent = `Pista 50/50 (${state.quiz.hintsLeft})`;
+    hintBtn.disabled = state.quiz.hintsLeft<=0;
+
+    document.getElementById('quizQ').textContent = q.q;
+    const chDiv=document.getElementById('quizChoices');
+    chDiv.innerHTML='';
+
+    q.ch.forEach(choice=>{
+      const b=document.createElement('button');
+      b.className='qBtn';
+      b.textContent=choice;
+      b.dataset.val=choice;
+      b.addEventListener('click', ()=>{
+        if(b.classList.contains('disabled') || b.classList.contains('elim')) return;
+        chDiv.querySelectorAll('.qBtn').forEach(x=>x.classList.add('disabled'));
+        const ok = choice===q.a;
+        if(ok){
+          b.classList.add('correct');
+          state.quiz.correct++;
+          setFb('quizFb', true, 'Correcte.');
+          addXP(6);
+          sfx('good');
+        }else{
+          b.classList.add('wrong');
+          chDiv.querySelectorAll('.qBtn').forEach(x=>{ if(x.dataset.val===q.a) x.classList.add('correct'); });
+          setFb('quizFb', false, `La resposta correcta era: ${q.a}`);
+          sfx('bad');
+        }
+        document.getElementById('quizNext').style.display='inline-flex';
+        save();
+      });
+      chDiv.appendChild(b);
+    });
+
+    document.getElementById('quizNext').style.display='none';
+  }
+
+  function quizHint(){
+    if(state.quiz.hintsLeft<=0) return;
+    const idx=state.quiz.idx;
+    const q=state.quiz.questions[idx];
+    const buttons=[...document.querySelectorAll('#quizChoices .qBtn')];
+    const wrong = buttons.filter(b=>b.dataset.val!==q.a && !b.classList.contains('elim'));
+    pick(wrong, 2).forEach(b=>b.classList.add('elim'));
+    state.quiz.hintsLeft--; state.quiz.usedHints++;
+    document.getElementById('quizHint').textContent = `Pista 50/50 (${state.quiz.hintsLeft})`;
+    document.getElementById('quizHint').disabled = state.quiz.hintsLeft<=0;
+    save();
+  }
+
+  function quizNext(){
+    const total=state.quiz.questions.length;
+    state.quiz.idx++;
+    document.getElementById('quizFb').className='fb';
+
+    if(state.quiz.idx >= total){
+      state.quiz.completed=true;
+      const ok = state.quiz.correct>=5;
+      state.done.quiz = ok;
+      if(ok){
+        setFb('quizFb', true, `Secció 5 completada (${state.quiz.correct}/${total}).`);
+        addXP(20);
+        completeSection('quiz');
+      }else{
+        setFb('quizFb', false, `Cal ≥5 correctes. Ara: ${state.quiz.correct}/${total}.`);
+        sfx('bad');
+      }
+      document.getElementById('quizNext').style.display='none';
+      document.getElementById('quizHint').disabled=true;
+      save();
+      return;
+    }
+    renderQuizQ();
+    save();
+  }
+
+  /* ======== 6. REDAC ======== */
+  function buildRedac(){
+    const ta=document.getElementById('redacText');
+    ta.value = state.redac.text || '';
+    updateWC();
+
+    ta.addEventListener('input', ()=>{
+      state.redac.text = ta.value;
+      updateWC();
+      save();
+    });
+  }
+
+  function updateWC(){
+    const text = (document.getElementById('redacText').value||'').trim();
+    const wc = text ? text.split(/\s+/).filter(Boolean).length : 0;
+    state.redac.wc=wc;
+    document.getElementById('wc').textContent = wc;
+    if(wc>=12){
+      if(!state.done.redac){
+        setFb('redacFb', true, 'Secció 6 completada.');
+        addXP(18);
+        completeSection('redac');
+      }
+    }else{
+      state.done.redac=false;
+      document.getElementById('redacFb').className='fb';
+    }
+  }
+
+  /* ======== RESUM + PDF ======== */
+  function todayStr(){
+    const d=new Date();
+    return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
+  }
+
+  function updateSummary(){
+    const name=(document.getElementById('stuName').value||'').trim();
+    const group=(document.getElementById('stuGroup').value||'').trim();
+
+    const dicteeStr = state.dictee.total ? `${state.dictee.ok}/${state.dictee.total} (${state.dictee.pct||0}%)` : '—';
+    const quizStr = state.quiz.questions.length ? `${state.quiz.correct}/${state.quiz.questions.length}` : '—';
+    const corpsStr = `${state.corps.discovered.length}/${Object.keys(CORPS_PARTS).length}`;
+    const wcStr = `${state.redac.wc||0} paraules`;
+    const mode = state.quiz.mode || 'extended';
+    const extras = (mode==='strict')?0:(state.quiz.extraWords||[]).length;
+
+    const lines = [
+      `Alumne/a: ${name||'(sense nom)'} · Grup: ${group||'(sense grup)'} · Data: ${todayStr()}`,
+      `Nivell: ${state.game.level||1} · XP: ${state.game.xp||0} · Dies seguits: ${state.game.streakDays||0} · Insígnies: ${(state.game.badges||[]).length}`,
+      `Vocab: ${state.vocab.flipped.length}/12 · ${state.done.vocab?'Completat':'Incomplet'}`,
+      `Vídeo: ${state.done.video?'Completat':'Incomplet'}`,
+      `Cos: ${corpsStr} · ${state.done.corps?'Completat':'Incomplet'}`,
+      `Dictée: ${dicteeStr} · ${state.done.dictee?'Completat':'Incomplet'}`,
+      `Quiz: ${quizStr} · Mode: ${mode==='strict'?'A1 estricte':'A1 ampliat'} (+${extras}) · ${state.done.quiz?'Completat':'Incomplet'}`,
+      `Redacció: ${wcStr} · ${state.done.redac?'Completat':'Incomplet'}`
+    ];
+    document.getElementById('summary').innerHTML = lines.map(x=>`<div class="small" style="margin-top:6px">${x}</div>`).join('');
+  }
+
+  function generatePdf(){
+    const fbId='finishFb';
+    const name=document.getElementById('stuName').value.trim();
+    const group=document.getElementById('stuGroup').value.trim();
+
+    if(!name){ setFb(fbId,false,'Escriu primer el teu NOM.'); document.getElementById('stuName').focus(); return; }
+    if(!group){ setFb(fbId,false,'Escriu primer el teu GRUP.'); document.getElementById('stuGroup').focus(); return; }
+
+    if(!window.jspdf || !window.jspdf.jsPDF){
+      setFb(fbId,false,"No s'ha carregat la llibreria del PDF (cal Internet)." );
+      return;
+    }
+
+    state.student.name=name; state.student.group=group; save();
+
+    const {jsPDF}=window.jspdf;
+    const doc=new jsPDF({unit:'pt',format:'a4'});
+    const W=doc.internal.pageSize.getWidth();
+    const H=doc.internal.pageSize.getHeight();
+
+    doc.setFillColor(61,122,82); doc.rect(0,0,W,54,'F');
+    doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(16);
+    doc.text('Les parties du corps — FLE A1 (PRO+) · Resultats',38,34);
+
+    let y=78;
+    doc.setFillColor(230,242,235); doc.setDrawColor(168,207,184);
+    doc.roundedRect(38,y,W-76,92,10,10,'FD');
+
+    doc.setTextColor(61,122,82); doc.setFontSize(9);
+    doc.text('ALUMNE/A',54,y+22);
+    doc.setTextColor(26,29,36); doc.setFontSize(18); doc.setFont('helvetica','bold');
+    doc.text(name,54,y+48);
+
+    doc.setFontSize(9); doc.setTextColor(61,122,82); doc.setFont('helvetica','bold');
+    doc.text('GRUP',54,y+74);
+    doc.setFont('helvetica','normal'); doc.setTextColor(26,29,36); doc.setFontSize(12);
+    doc.text(group,94,y+74);
+
+    doc.setFont('helvetica','bold'); doc.setTextColor(61,122,82); doc.setFontSize(9);
+    doc.text('DATA',W-160,y+74);
+    doc.setFont('helvetica','normal'); doc.setTextColor(26,29,36); doc.setFontSize(12);
+    doc.text(todayStr(),W-126,y+74);
+
+    y += 120;
+
+    doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(61,122,82);
+    doc.text('Resultats per secció',38,y); y+=16;
+
+    const mode = state.quiz.mode || 'extended';
+    const extras = (mode==='strict')?0:(state.quiz.extraWords||[]).length;
+
+    const rows=[
+      ['Nivell/XP/Dies/Insígnies', `${state.game.level||1}/${state.game.xp||0}/${state.game.streakDays||0}/${(state.game.badges||[]).length}`, ''],
+      ['Vocabulari', `${state.vocab.flipped.length}/12`, state.done.vocab?'Completat':'Incomplet'],
+      ['Vídeo', '—', state.done.video?'Completat':'Incomplet'],
+      ['Cos interactiu', `${state.corps.discovered.length}/${Object.keys(CORPS_PARTS).length}`, state.done.corps?'Completat':'Incomplet'],
+      ['Dictée', state.dictee.total?`${state.dictee.ok}/${state.dictee.total}`:'—', state.done.dictee?(state.dictee.pct+'%'):'Incomplet'],
+      ['Quiz', state.quiz.questions.length?`${state.quiz.correct}/${state.quiz.questions.length}`:'—', `${mode==='strict'?'A1':'A1+'} (+${extras})`],
+      ['Redacció', `${state.redac.wc||0} paraules`, state.done.redac?'Completat':'Incomplet']
+    ];
+
+    const colX=[38,300,430];
+    doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(120,120,130);
+    doc.text('SECCIÓ', colX[0], y);
+    doc.text('PUNTUACIÓ', colX[1], y);
+    doc.text('DETALL', colX[2], y);
+    y+=6; doc.setDrawColor(228,224,214); doc.line(38,y,W-38,y); y+=16;
+
+    doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.setTextColor(26,29,36);
+    rows.forEach(r=>{
+      doc.text(String(r[0]), colX[0], y, {maxWidth:250});
+      doc.text(String(r[1]), colX[1], y);
+      doc.text(String(r[2]), colX[2], y, {maxWidth:160});
+      y += 16;
+    });
+
+    y += 8;
+    doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(184,90,110);
+    doc.text('Redacció — Je décris mon corps',38,y); y += 14;
+
+    doc.setFont('helvetica','normal'); doc.setFontSize(10.5); doc.setTextColor(26,29,36);
+    const red = (state.redac.text||'').trim() || "(No s'ha escrit cap text.)";
+    const lines = doc.splitTextToSize(red, W-76);
+    for(const line of lines){
+      if(y > H-60){ doc.addPage(); y=54; }
+      doc.text(line,38,y); y+=14;
+    }
+
+    doc.setFontSize(8); doc.setTextColor(160,160,170);
+    doc.text('Generat automàticament — Les parties du corps (PRO+)',38,H-22);
+    doc.text(todayStr(),W-38,H-22,{align:'right'});
+
+    const safe=(name+'_'+group).replace(/[^a-zA-Z0-9_-]/g,'_').replace(/_+/g,'_');
+    doc.save(`Les_parties_du_corps_PRO+_Joc_${safe}.pdf`);
+
+    setFb(fbId,true,'PDF descarregat. Ara el pots pujar a Classroom.');
+    addXP(10);
+    if(state.game.motion) confetti();
+  }
+
+  /* ======== UI: MODALS ======== */
+  function openModal(backId){
+    const b=document.getElementById(backId);
+    if(!b) return;
+    b.style.display='flex';
+  }
+  function closeModal(backId){
+    const b=document.getElementById(backId);
+    if(!b) return;
+    b.style.display='none';
+  }
+
+  /* ======== INIT ======== */
+  load();
+
+  // wire start screen
+  const startBtn = document.getElementById('startBtn');
+  const howBtn = document.getElementById('howBtn');
+  const soundToggle = document.getElementById('soundToggle');
+  const motionToggle = document.getElementById('motionToggle');
+
+  soundToggle.checked = !!state.game.sound;
+  motionToggle.checked = !!state.game.motion;
+
+  soundToggle.addEventListener('change', ()=>{ state.game.sound = soundToggle.checked; save(); });
+  motionToggle.addEventListener('change', ()=>{ state.game.motion = motionToggle.checked; save(); });
+
+  startBtn.addEventListener('click', ()=>{ hideStart(); addXP(1); sfx('good'); });
+  howBtn.addEventListener('click', showHow);
+
+  // HUD controls
+  document.getElementById('openBadges').addEventListener('click', ()=>{ renderBadges(); openModal('badgesBack'); });
+  document.getElementById('closeBadges').addEventListener('click', ()=>closeModal('badgesBack'));
+  document.getElementById('badgesBack').addEventListener('click', (e)=>{ if(e.target.id==='badgesBack') closeModal('badgesBack'); });
+
+  document.getElementById('openSettings').addEventListener('click', ()=>openModal('settingsBack'));
+  document.getElementById('closeSettings').addEventListener('click', ()=>closeModal('settingsBack'));
+  document.getElementById('settingsBack').addEventListener('click', (e)=>{ if(e.target.id==='settingsBack') closeModal('settingsBack'); });
+
+  // Settings selects
+  const soundSelect = document.getElementById('soundSelect');
+  const motionSelect = document.getElementById('motionSelect');
+  soundSelect.value = state.game.sound ? 'on' : 'off';
+  motionSelect.value = state.game.motion ? 'on' : 'off';
+  soundSelect.addEventListener('change', ()=>{ state.game.sound = (soundSelect.value==='on'); soundToggle.checked=state.game.sound; save(); });
+  motionSelect.addEventListener('change', ()=>{ state.game.motion = (motionSelect.value==='on'); motionToggle.checked=state.game.motion; save(); });
+  document.getElementById('wipeProgress').addEventListener('click', resetAll);
+
+  // student fields
+  const nameIn=document.getElementById('stuName');
+  const groupIn=document.getElementById('stuGroup');
+  nameIn.value = state.student.name || '';
+  groupIn.value = state.student.group || '';
+  nameIn.addEventListener('input', ()=>{ state.student.name=nameIn.value; save(); });
+  groupIn.addEventListener('input', ()=>{ state.student.group=groupIn.value; save(); });
+
+  // mode selector
+  const modeSel = document.getElementById('quizMode');
+  modeSel.value = state.quiz.mode || 'extended';
+  modeSel.addEventListener('change', ()=>{
+    state.quiz.mode = modeSel.value;
+    state.quiz.extraWords = [];
+    rebuildQuizFromDictee(true);
+  });
+
+  // build sections
+  buildVocab();
+  buildVideo();
+  buildCorps();
+  buildDictee(false);
+
+  if(!state.dictee.items || state.dictee.items.length===0){
+    buildDictee(true);
+  } else {
+    if(!state.quiz.questions || state.quiz.questions.length!==8){
+      rebuildQuizFromDictee(true);
+    } else {
+      updateQuizInfo();
+      renderQuizQ();
+    }
+  }
+
+  buildRedac();
+
+  document.getElementById('dicteeCheck').addEventListener('click', checkDictee);
+  document.getElementById('dicteeNew').addEventListener('click', ()=>{ buildDictee(true); save(); });
+
+  document.getElementById('quizHint').addEventListener('click', quizHint);
+  document.getElementById('quizNext').addEventListener('click', quizNext);
+  document.getElementById('quizRebuild').addEventListener('click', ()=>{ state.quiz.extraWords=[]; rebuildQuizFromDictee(true); });
+
+  document.getElementById('makePdf').addEventListener('click', generatePdf);
+  document.getElementById('resetAll').addEventListener('click', resetAll);
+
+  // restore completion messages
+  if(state.done.vocab) setFb('vocabFb', true, 'Secció 1 completada.');
+  if(state.done.video) setFb('videoFb', true, 'Secció 2 completada.');
+  if(state.done.corps) setFb('corpsFb', true, 'Secció 3 completada.');
+  if(state.dictee.total){
+    document.getElementById('dicteeScore').textContent = `${state.dictee.ok||0} / ${state.dictee.total}`;
+    if(state.done.dictee) setFb('dicteeFb', true, `Secció 4 completada (${state.dictee.pct||0}%).`);
+  }
+  if(state.done.redac) setFb('redacFb', true, 'Secció 6 completada.');
+
+  // nav done marks
+  updateSummary();
+  updateGlobal();
+  renderBadges();
+  updateHUD();
+
+  // keep start screen visible always at load; user must click.
+
+</script>
+</body>
+</html>
